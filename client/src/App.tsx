@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { User } from "enka-network-api";
 
 function App() {
-    const [backendData, setBackendData] = useState<User>();
+    const [backendData, setBackendData] = useState();
 
     useEffect(() => {
         fetch("/api")
@@ -15,7 +14,7 @@ function App() {
             {typeof backendData === "undefined" ? (
                 <p>Loading...</p>
             ) : (
-                <p>{JSON.stringify(backendData)}</p>
+                <p>{JSON.stringify(backendData["playerInfo"])}</p>
             )}
         </div>
     );
