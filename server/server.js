@@ -13,9 +13,20 @@ app.get("/", (req, res) => {
     res.send("Hello World!");
 });
 
-app.get("/api", (req, res) => {
-    const backendUrl = "https://enka.network/api/uid/618285856/";
-    axios.get(backendUrl).then((response) => res.send(response.data));
+app.get("/api/:uid", (req, res) => {
+    const backendUrl = `https://enka.network/api/uid/${req.params.uid}/`;
+    axios
+        .get(backendUrl)
+        .then((response) => {
+            res.json(response.data);
+        })
+        .catch((error) => {
+            if (error.response) {
+                res.send(error.response.status);
+            } else {
+                res.send(error.request);
+            }
+        });
 });
 
 app.listen(port, () => {
