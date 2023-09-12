@@ -47,7 +47,12 @@ function SearchUser() {
                 setStatus(res.status);
                 return res.json();
             })
-            .then((data) => setBackendData(data.playerInfo.nickname))
+            .then((data) => {
+                {
+                    setBackendData(data.playerInfo.nickname);
+                    console.log(data.playerInfo);
+                }
+            })
             .catch((error) => console.log(error));
     };
 
